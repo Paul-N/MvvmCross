@@ -1,0 +1,4 @@
+[submodule "maui"]
+	path = maui
+	url = https://github.com/dotnet/maui
+	branch = main
