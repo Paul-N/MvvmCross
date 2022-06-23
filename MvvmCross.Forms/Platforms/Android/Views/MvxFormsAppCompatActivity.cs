@@ -98,7 +98,7 @@ namespace MvvmCross.Forms.Platforms.Android.Views
         {
             // ensuring mvvmcross is running here is required
             // otherwise app will crash when inflating the view because of the Forms base class
-            var setup = MvxAndroidSetupSingleton.EnsureSingletonAvailable(ApplicationContext);
+            var setup = MvxAndroidSetupSingleton.EnsureSingletonAvailable(this);
             setup.EnsureInitialized();
 
             base.OnCreate(bundle);
@@ -179,7 +179,7 @@ namespace MvvmCross.Forms.Platforms.Android.Views
         }
     }
 
-    public class MvxFormsAppCompatActivity<TViewModel> : MvxFormsAppCompatActivity, IMvxAndroidView<TViewModel> 
+    public class MvxFormsAppCompatActivity<TViewModel> : MvxFormsAppCompatActivity, IMvxAndroidView<TViewModel>
         where TViewModel : class, IMvxViewModel
     {
         public new TViewModel ViewModel
