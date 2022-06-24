@@ -12,6 +12,8 @@ using JetBrains.Annotations;
 using Microsoft.Extensions.Logging;
 using MvvmCross.Base;
 using MvvmCross.Logging;
+using PropertyChangingEventArgs = System.ComponentModel.PropertyChangingEventArgs;
+using PropertyChangingEventHandler = System.ComponentModel.PropertyChangingEventHandler;
 
 namespace MvvmCross.ViewModels
 {

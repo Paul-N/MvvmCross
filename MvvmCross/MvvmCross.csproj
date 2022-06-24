@@ -1,15 +1,19 @@
-﻿<Project Sdk="MSBuild.Sdk.Extras">
-  <PropertyGroup Condition=" '$(TargetsToBuild)' == 'All' ">
-    <TargetFrameworks>netstandard2.0;xamarin.ios10;xamarin.mac20;xamarin.tvos10;xamarin.watchos10;monoandroid10.0;net6.0;net6.0-android;net6.0-ios;net6.0-tvos;net6.0-macos;tizen40;netcoreapp3.1;net5.0</TargetFrameworks>
-    <TargetFrameworks Condition=" '$(OS)' == 'Windows_NT' ">net48;uap10.0.19041;$(TargetFrameworks)</TargetFrameworks>
-  </PropertyGroup>
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFrameworks>net6.0;net6.0-android;net6.0-ios;net6.0-maccatalyst</TargetFrameworks>
+    <TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net6.0-windows10.0.19041.0</TargetFrameworks>
+    <!-- Uncomment to also build the tizen app. You will need to install tizen by following this: https://github.com/Samsung/Tizen.NET -->
+    <!-- <TargetFrameworks>$(TargetFrameworks);net6.0-tizen</TargetFrameworks> -->
+    <UseMaui>true</UseMaui>
+    <SingleProject>true</SingleProject>
+    <ImplicitUsings>enable</ImplicitUsings>
 
-  <PropertyGroup Condition=" '$(TargetsToBuild)' != 'All' ">
-    <TargetFrameworks Condition=" '$(TargetsToBuild)' == 'Android' ">net6.0;netstandard2.0;monoandroid10.0;net6.0-android;</TargetFrameworks>
-    <TargetFrameworks Condition=" '$(TargetsToBuild)' == 'Uap' ">net6.0;netstandard2.0;uap10.0.19041</TargetFrameworks>
-    <TargetFrameworks Condition=" '$(TargetsToBuild)' == 'iOS' ">net6.0;netstandard2.0;xamarin.ios10;net6.0-ios</TargetFrameworks>
-    <TargetFrameworks Condition=" '$(TargetsToBuild)' == 'Tizen' ">net6.0;netstandard2.0;tizen40</TargetFrameworks>
-    <TargetFrameworks Condition=" '$(TargetsToBuild)' == 'Mac' ">net6.0;netstandard2.0;xamarin.mac20;net6.0-macos;</TargetFrameworks>
+    <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">14.2</SupportedOSPlatformVersion>
+    <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'maccatalyst'">14.0</SupportedOSPlatformVersion>
+    <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">21.0</SupportedOSPlatformVersion>
+    <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</SupportedOSPlatformVersion>
+    <TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</TargetPlatformMinVersion>
+    <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'tizen'">6.5</SupportedOSPlatformVersion>
   </PropertyGroup>
 
   <PropertyGroup>
@@ -27,6 +31,7 @@ This package contains the 'Core' libraries for MvvmCross</Description>
     <None Include="Platforms\**\*.cs" />
     <None Include="Resources\*.cs" />
     <Compile Remove="Resources\*.cs" />
+    <!--<Compile Include="Platforms\Android\MvxAndroidGlobalUsings.cs" />-->
     <None Include="readme.txt" pack="true" PackagePath="." />
   </ItemGroup>
   
@@ -114,12 +119,12 @@ This package contains the 'Core' libraries for MvvmCross</Description>
     <Compile Include="Platforms\Android\**\*.cs" />
     <Compile Include="Platforms\Xamarin\**\*.cs" />
     <AndroidResource Include="Resources\**\*.xml" SubType="Designer" Generator="MSBuild:UpdateAndroidResources" />
-
-    <PackageReference Include="Xamarin.AndroidX.AppCompat" />
+    <PackageReference Include="Xamarin.AndroidX.Preference" Version="1.2.0.1" />
+    <!--<PackageReference Include="Xamarin.AndroidX.AppCompat" />
     <PackageReference Include="Xamarin.AndroidX.Fragment" />
-    <PackageReference Include="Xamarin.AndroidX.Preference" />
+    
     <PackageReference Include="Xamarin.AndroidX.ViewPager" />
-    <PackageReference Include="Xamarin.Google.Android.Material" />
+    <PackageReference Include="Xamarin.Google.Android.Material" />-->
   </ItemGroup>
   
   <ItemGroup Condition=" $(TargetFramework.StartsWith('tizen')) ">
@@ -128,6 +133,6 @@ This package contains the 'Core' libraries for MvvmCross</Description>
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="6.0.1" />
   </ItemGroup>
 </Project>

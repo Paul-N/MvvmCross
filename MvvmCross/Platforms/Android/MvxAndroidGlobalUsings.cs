@@ -1,0 +1,11 @@
+﻿global using View = Android.Views.View;
+global using Toolbar = AndroidX.AppCompat.Widget.Toolbar;
+global using Application = Android.App.Application;
+global using RadioButton = Android.Widget.RadioButton;
+global using WebView = Android.Webkit.WebView;
+global using AppCompatSearchView = AndroidX.AppCompat.Widget.SearchView;
+global using Button = Android.Widget.Button;
+global using CheckBox = Android.Widget.CheckBox;
+global using DatePicker = Android.Widget.DatePicker;
+global using ListView = Android.Widget.ListView;
+global using TimePicker = Android.Widget.TimePicker;

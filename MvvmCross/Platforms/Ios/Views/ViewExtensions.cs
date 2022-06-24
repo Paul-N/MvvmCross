@@ -5,6 +5,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using CoreGraphics;
 using Foundation;
 using ObjCRuntime;
@@ -119,7 +120,7 @@ namespace MvvmCross.Platforms.Ios.Views
             scrollView.CenterView(viewToCenter, height, animated: animated);
         }
 
-        public static void CenterView(this UIScrollView scrollView, UIView viewToCenter, nfloat keyboardHeight = default(nfloat), bool adjustContentInsets = true, bool animated = false)
+        public static void CenterView(this UIScrollView scrollView, UIView viewToCenter, NFloat keyboardHeight = default(NFloat), bool adjustContentInsets = true, bool animated = false)
         {
             if (adjustContentInsets)
             {

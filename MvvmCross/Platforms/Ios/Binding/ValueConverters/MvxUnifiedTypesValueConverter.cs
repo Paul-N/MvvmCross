@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Globalization;
+using System.Runtime.InteropServices;
 using MvvmCross.Converters;
 using MvvmCross.IoC;
 using ObjCRuntime;
@@ -22,7 +23,7 @@ namespace MvvmCross.Platforms.Ios.Binding.ValueConverters
         {
             var initDictionary = new Dictionary<Type, Type>
                 {
-                    { typeof(float), typeof(nfloat) },
+                    { typeof(float), typeof(NFloat) },
                     { typeof(int), typeof(nint) },
                     { typeof(uint), typeof(nuint) }
                 };

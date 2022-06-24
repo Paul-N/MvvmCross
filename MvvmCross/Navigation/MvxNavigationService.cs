@@ -19,6 +19,7 @@ using MvvmCross.Navigation.EventArguments;
 using MvvmCross.Presenters.Hints;
 using MvvmCross.ViewModels;
 using MvvmCross.Views;
+using NavigationMode = MvvmCross.Navigation.EventArguments.NavigationMode;
 
 namespace MvvmCross.Navigation
 {

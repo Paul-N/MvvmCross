@@ -7,6 +7,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Windows.Input;
 using Foundation;
 using MvvmCross.Base;
@@ -211,7 +212,7 @@ namespace MvvmCross.Platforms.Ios.Views
         /// <param name="tableView"></param>
         /// <param name="section"></param>
         /// <returns></returns>
-        public override nfloat GetHeightForHeader(UITableView tableView, nint section)
+        public override NFloat GetHeightForHeader(UITableView tableView, nint section)
         {
             return 44; // Default value.
         }
